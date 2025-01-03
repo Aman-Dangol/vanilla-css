@@ -1,16 +1,15 @@
 import "modern-normalize/modern-normalize.css";
-import { AppHeader } from "./components/app-header/app-header";
+import { AppHeader } from "./layout/app-header/app-header";
+import { AppMain } from "./layout/app-main/app-main";
+import { Performance } from "./pages/performance-page/performance-page";
 
 function App() {
   return (
     <>
       <AppHeader />
-      <div
-        style={{
-          background: "#f7f8f9",
-          height: 500,
-        }}
-      ></div>
+      <AppMain>
+        <Performance />
+      </AppMain>
     </>
   );
 }

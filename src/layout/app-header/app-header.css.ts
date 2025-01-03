@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import {
   hiddenTill,
   marginX,
@@ -8,17 +8,18 @@ import {
   spacing,
 } from "../../css-helper";
 import { flexItemCenterStyle, headerHeightVar } from "../../global.css";
-import { paddingX } from "./../../css-helper";
-import { secondaryTextStyle } from "./../../global.css";
+import { paddingX } from "../../css-helper";
+import { secondaryTextStyle } from "../../global.css";
 
 export const appHeaderStyle = style([
   flexItemCenterStyle,
   {
     height: headerHeightVar,
-    justifyContent: "space-between",
-    ...paddingX(spacing["7"]),
   },
+  paddingX(spacing["7"]),
+  // Use space between in mobile, and tablet view because search bar wont be visible
   {
+    justifyContent: "space-between",
     "@media": {
       ...responsiveStyling({
         lg: {
@@ -36,7 +37,11 @@ export const appHeaderLogoContainerStyle = style([
   },
 ]);
 
-export const appHeaderLogo = style([size(spacing["20"])]);
+export const appHeaderLogo = style([
+  {
+    width: spacing["20"],
+  },
+]);
 
 export const appHeaderLogoTitleStyle = style([
   {
@@ -54,7 +59,6 @@ export const appHeaderVerticalSeperatorStyle = style([
     width: 1,
     background: "#dedede",
   },
-  // marginX(spacing["6"]),
   hiddenTill("lg", "inline-block"),
 ]);
 
@@ -62,6 +66,7 @@ export const appHeaderLogoSectionStyle = style([
   flexItemCenterStyle,
   { gap: spacing[6] },
 ]);
+
 export const appHeaderWorkspaceSwitchContainerStyle = style([
   flexItemCenterStyle,
   hiddenTill("lg", "flex"),
@@ -81,8 +86,8 @@ export const appHeaderHamburger = style([size(spacing[6]), showTill("lg")]);
 export const appHeaderSearchSectionContainerStyle = style([
   {
     flex: 1,
-    ...marginX(spacing[10]),
   },
+  marginX(spacing[10]),
   hiddenTill("lg", "block"),
 ]);
 
@@ -92,7 +97,8 @@ export const appHeaderSearchButtonStyle = style([
   {
     background: "#f7f8f9",
     textAlign: "start",
-    padding: spacing["2.5"],
+    paddingInline: spacing["2.5"],
+    paddingBlock: spacing["1.5"],
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ececec",
@@ -100,6 +106,7 @@ export const appHeaderSearchButtonStyle = style([
     width: "100%",
     maxWidth: "700px",
     gap: spacing["2.5"],
+    containerType: "inline-size",
     "@media": {
       ...responsiveStyling({
         xl: {
@@ -110,9 +117,35 @@ export const appHeaderSearchButtonStyle = style([
   },
 ]);
 
+export const appHeaderSearchLeftStyle = style([
+  flexItemCenterStyle,
+  {
+    flex: 1,
+    gap: spacing["2.5"],
+  },
+]);
+
+globalStyle(`${appHeaderSearchLeftStyle} > span `, {
+  "@container": {
+    "(max-width: 517px)": {
+      maxWidth: "220px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
+  },
+});
+
+export const appHeaderSearchRightStyle = style([
+  flexItemCenterStyle,
+  { gap: spacing["1.5"] },
+]);
+
 export const appHeaderProfileSection = style([
   flexItemCenterStyle,
-  { gap: spacing["6"] },
+  {
+    gap: spacing["6"],
+  },
   hiddenTill("lg", "flex"),
 ]);
 
