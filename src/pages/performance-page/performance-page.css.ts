@@ -29,3 +29,16 @@ export const performanceContainerStyle = style({
 export const performanceTickContainerStyle = style({
   background: "",
 });
+
+export const performanceMainContainerStyle = style([
+  {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))",
+    gap: spacing[4],
+  },
+]);
+
+export const performanceLeftContentStyle = style({
+  display: "grid",
+  gridTemplateColumns: "auto 1fr",
+});

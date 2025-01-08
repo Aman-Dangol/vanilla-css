@@ -7,7 +7,7 @@ export const appMainContainerStyle = style({
 
 globalStyle(`${appMainContainerStyle} > div`, {
   backgroundColor: "#f6f7f8",
-  height: 200,
+
   borderRadius: 8,
   borderWidth: 1,
   borderColor: "#ececec",
